@@ -212,7 +212,7 @@ footer span{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,25
     <div class="hero-ctas">
       <a class="btn-solid" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See my work</a>
       <a class="btn-outline" href="mailto:penymburu03@gmail.com">Get in touch</a>
-      <a class="btn-outline" href="#" id="cv-btn" onclick="handleCV(event)">↓ Download CV</a>
+      <a class="btn-outline" href="./Peninah_Mburu_CV.pdf" download="Peninah_Mburu_CV.pdf">↓ Download CV</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><span class="hero-stat-num" id="stat-repos">—</span><span class="hero-stat-label">Public repos</span></div>
@@ -490,7 +490,7 @@ footer span{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,25
       <a class="contact-card" href="https://github.com/Wanjikumburu" target="_blank"><div class="contact-dot"></div>GitHub — @Wanjikumburu</a>
       <a class="contact-card" href="mailto:penymburu03@gmail.com"><div class="contact-dot"></div>penymburu03@gmail.com</a>
       <a class="contact-card" href="tel:+254711642538"><div class="contact-dot"></div>+254 795 141 095</a>
-      <a class="contact-card" href="#" onclick="return false;"><div class="contact-dot"></div>LinkedIn — add yours</a>
+      <a class="contact-card" href="https://www.linkedin.com/in/peninah-mburu-9742612b9/" target="_blank"><div class="contact-dot"></div>LinkedIn — Peninah Mburu</a>
     </div>
   </div>
 </section>
@@ -565,11 +565,7 @@ async function loadGitHubStats(){
 }
 loadGitHubStats();
 
-// CV
-function handleCV(e){
-  e.preventDefault();
-  alert('Place your CV PDF in the same folder as index.html, rename it cv.pdf, then update this button to: href="./cv.pdf" download');
-}
+// CV download handled by href
 </script>
 </body>
 </html>
