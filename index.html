@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Peninah Wanjiku Mburu — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root[data-theme="dark"]{
+  --bg:#0E1117;--bg-card:#161B25;--bg-card-hover:#1C2333;
+  --ink:#F0F2F7;--ink-mid:#B8BFCC;--ink-soft:#7A8599;--ink-muted:#4A5268;
+  --green:#2ECC8A;--green-dim:#1A7A52;--green-light:rgba(46,204,138,0.1);
+  --border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);
+  --nav-bg:rgba(14,17,23,0.92);--hero-bg:#0A0D13;
+  --tag-bg:rgba(46,204,138,0.1);--tag-color:#2ECC8A;
+  --chip-bg:rgba(255,255,255,0.05);--chip-border:rgba(255,255,255,0.1);
+  --shadow:0 2px 24px rgba(0,0,0,0.4);
+}
+:root[data-theme="light"]{
+  --bg:#F7F5F0;--bg-card:#FFFFFF;--bg-card-hover:#FDFCF9;
+  --ink:#111318;--ink-mid:#2E3340;--ink-soft:#5A6072;--ink-muted:#8A92A3;
+  --green:#1A6B4A;--green-dim:#0F4A32;--green-light:#E8F4EE;
+  --border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.15);
+  --nav-bg:rgba(247,245,240,0.94);--hero-bg:#111318;
+  --tag-bg:#E8F4EE;--tag-color:#1A6B4A;
+  --chip-bg:#F0EEE9;--chip-border:rgba(0,0,0,0.1);
+  --shadow:0 2px 16px rgba(0,0,0,0.08);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;transition:background 0.3s,color 0.3s;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:56px;transition:background 0.3s,border-color 0.3s;}
+.nav-name{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);letter-spacing:-0.01em;}
+.nav-right{display:flex;align-items:center;gap:2rem;}
+.nav-links{display:flex;gap:1.75rem;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:color 0.2s;text-decoration:none;}
+.nav-links a:hover{color:var(--green);}
+.theme-toggle{background:none;border:1px solid var(--border-strong);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;color:var(--ink-soft);display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.theme-toggle:hover{color:var(--ink);border-color:var(--green);}
+
+/* HERO */
+.hero{min-height:96vh;display:flex;align-items:center;padding:5rem 3rem 4rem;background:var(--hero-bg);position:relative;overflow:hidden;}
+.hero-orb{position:absolute;top:-100px;right:-60px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(46,204,138,0.12) 0%,transparent 65%);pointer-events:none;animation:pulse 6s ease-in-out infinite;}
+.hero-orb2{position:absolute;bottom:-150px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(46,204,138,0.06) 0%,transparent 65%);pointer-events:none;animation:pulse 8s ease-in-out infinite reverse;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.05);opacity:0.8;}}
+.hero-inner{max-width:920px;margin:0 auto;width:100%;position:relative;z-index:1;}
+.hero-kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:2rem;display:block;}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(3rem,7vw,5.8rem);color:#FFFFFF;line-height:1.05;letter-spacing:-0.025em;margin-bottom:1.25rem;}
+.hero-name em{font-style:italic;color:rgba(255,255,255,0.35);}
+.hero-typed{font-size:clamp(16px,2.2vw,20px);color:rgba(255,255,255,0.6);margin-bottom:2.5rem;font-weight:300;min-height:1.8em;}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--green);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:text-bottom;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:3.5rem;}
+.btn-solid{background:var(--green);color:#fff;padding:12px 26px;border-radius:3px;font-size:13px;font-weight:600;letter-spacing:0.03em;cursor:pointer;border:none;transition:opacity 0.2s,transform 0.15s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-solid:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-outline{background:transparent;color:rgba(255,255,255,0.65);padding:12px 26px;border-radius:3px;font-size:13px;font-weight:500;letter-spacing:0.03em;cursor:pointer;border:1px solid rgba(255,255,255,0.2);transition:all 0.2s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-outline:hover{color:#fff;border-color:rgba(255,255,255,0.5);transform:translateY(-1px);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);}
+.hero-stat{display:flex;flex-direction:column;gap:2px;}
+.hero-stat-num{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:#fff;letter-spacing:-0.02em;}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;}
+
+/* SECTIONS */
+.section{padding:5.5rem 3rem;}
+.section-inner{max-width:920px;margin:0 auto;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);margin-bottom:0.75rem;display:block;}
+.section-heading{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,2.8rem);color:var(--ink);line-height:1.15;letter-spacing:-0.015em;margin-bottom:2.5rem;}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-in-delay-1{transition-delay:0.1s;}
+.fade-in-delay-2{transition-delay:0.2s;}
+.fade-in-delay-3{transition-delay:0.3s;}
+
+/* ABOUT */
+.about-section{background:var(--bg-card);border-top:1px solid var(--border);}
+.about-grid{display:grid;grid-template-columns:3fr 2fr;gap:4rem;align-items:start;}
+.about-body p{color:var(--ink-soft);margin-bottom:1rem;font-size:15px;}
+.about-aside{border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.aside-item{padding:1rem 1.25rem;background:var(--bg);border-bottom:1px solid var(--border);}
+.aside-item:last-child{border-bottom:none;}
+.aside-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;}
+.aside-value{font-size:14px;font-weight:500;color:var(--ink);}
+
+/* EXPERIENCE */
+.experience-section{background:var(--bg);border-top:1px solid var(--border);}
+.timeline{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.timeline-item{background:var(--bg-card);padding:2rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;transition:background 0.2s;}
+.timeline-item:last-child{border-bottom:none;}
+.timeline-item:hover{background:var(--bg-card-hover);}
+.timeline-item.current{border-left:3px solid var(--green);}
+.exp-role{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);margin-bottom:3px;}
+.exp-company{font-size:13px;font-weight:600;color:var(--green);margin-bottom:0.75rem;letter-spacing:0.02em;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.exp-bullets li{font-size:14px;color:var(--ink-soft);padding-left:1.1rem;position:relative;}
+.exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--green);font-size:12px;}
+.exp-meta{text-align:right;flex-shrink:0;}
+.exp-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-muted);white-space:nowrap;margin-bottom:6px;}
+.exp-type{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);background:var(--tag-bg);border-radius:2px;padding:3px 8px;display:inline-block;}
+
+/* PROJECTS */
+.projects-section{background:var(--bg-card);border-top:1px solid var(--border);}
+.filter-tabs{display:flex;gap:8px;margin-bottom:2rem;flex-wrap:wrap;}
+.filter-tab{padding:7px 16px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border);color:var(--ink-soft);background:var(--bg);transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.filter-tab:hover{color:var(--green);border-color:var(--green);}
+.filter-tab.active{background:var(--green);color:#fff;border-color:var(--green);}
+.projects-list{display:flex;flex-direction:column;gap:12px;}
+.project-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;transition:background 0.2s,border-color 0.2s,transform 0.2s,box-shadow 0.2s;}
+.project-item:hover{background:var(--bg-card-hover);border-color:rgba(46,204,138,0.3);transform:translateY(-2px);box-shadow:var(--shadow);}
+.project-item.featured{border-left:3px solid var(--green);}
+.project-item.hidden{display:none;}
+.proj-type{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem;display:block;}
+.proj-title{font-family:'DM Serif Display',serif;font-size:19px;color:var(--ink);margin-bottom:0.6rem;line-height:1.25;}
+.proj-desc{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:1rem;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-soft);background:var(--chip-bg);border:1px solid var(--chip-border);border-radius:2px;padding:2px 8px;}
+.proj-meta{text-align:right;flex-shrink:0;}
+.proj-year{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-muted);margin-bottom:6px;}
+.proj-badge{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);background:var(--tag-bg);border-radius:2px;padding:3px 8px;display:inline-block;}
+.proj-links{display:flex;gap:8px;margin-top:1rem;}
+.proj-link{font-size:11px;font-weight:500;color:var(--green);text-decoration:none;letter-spacing:0.04em;border-bottom:1px solid transparent;transition:border-color 0.2s;}
+.proj-link:hover{border-color:var(--green);}
+
+/* SKILLS */
+.skills-section{background:var(--bg);border-top:1px solid var(--border);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+.skill-col{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1.5rem 1.25rem;transition:border-color 0.2s;}
+.skill-col:hover{border-color:var(--green);}
+.skill-col-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;display:block;}
+.skill-list{list-style:none;}
+.skill-list li{font-size:13px;color:var(--ink-soft);padding:5px 0;border-bottom:1px solid var(--border);}
+.skill-list li:last-child{border-bottom:none;}
+
+/* EDUCATION */
+.edu-section{background:var(--bg-card);border-top:1px solid var(--border);}
+.edu-list{display:flex;flex-direction:column;gap:12px;}
+.edu-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;}
+.edu-card.primary{border-left:3px solid var(--green);}
+.edu-degree{font-family:'DM Serif Display',serif;font-size:19px;color:var(--ink);margin-bottom:4px;}
+.edu-institution{font-size:14px;color:var(--green);font-weight:500;margin-bottom:6px;}
+.edu-detail{font-size:13px;color:var(--ink-soft);}
+.edu-courses{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+.course-tag{font-size:11px;color:var(--ink-soft);background:var(--chip-bg);border:1px solid var(--chip-border);border-radius:2px;padding:3px 9px;font-family:'DM Mono',monospace;}
+.edu-year{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-muted);white-space:nowrap;}
+
+/* GITHUB */
+.github-section{background:var(--bg);border-top:1px solid var(--border);}
+.github-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.github-stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1.5rem 1.25rem;text-align:center;transition:border-color 0.2s,transform 0.2s;}
+.github-stat-card:hover{border-color:var(--green);transform:translateY(-2px);}
+.github-stat-number{font-family:'DM Mono',monospace;font-size:2.2rem;font-weight:500;color:var(--green);line-height:1;margin-bottom:6px;}
+.github-stat-label{font-size:12px;color:var(--ink-muted);letter-spacing:0.04em;}
+.github-loading{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-muted);text-align:center;padding:2rem;}
+
+/* REFERENCES */
+.references-section{background:var(--bg-card);border-top:1px solid var(--border);}
+.references-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
+.ref-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:1.75rem;transition:border-color 0.2s,transform 0.2s;}
+.ref-card:hover{border-color:var(--green);transform:translateY(-2px);}
+.ref-name{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);margin-bottom:3px;}
+.ref-title{font-size:13px;color:var(--green);font-weight:500;margin-bottom:2px;}
+.ref-org{font-size:13px;color:var(--ink-soft);margin-bottom:1rem;}
+.ref-contacts{display:flex;flex-direction:column;gap:4px;}
+.ref-contact{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-muted);}
+
+/* CONTACT */
+.contact-section{background:var(--hero-bg);border-top:1px solid rgba(255,255,255,0.06);}
+.contact-section .eyebrow{color:var(--green);}
+.contact-section .section-heading{color:#fff;}
+.contact-sub{color:rgba(255,255,255,0.45);margin-bottom:2.5rem;font-size:15px;max-width:460px;font-weight:300;}
+.contact-cards{display:flex;gap:1rem;flex-wrap:wrap;}
+.contact-card{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:12px 20px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);cursor:pointer;transition:all 0.2s;text-decoration:none;}
+.contact-card:hover{background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(46,204,138,0.4);}
+.contact-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+footer{background:#070A0F;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;}
+footer span{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.05em;}
+
+@media(max-width:680px){
+  nav{padding:0 1.25rem;}.nav-links{gap:1rem;}
+  .hero,.section{padding-left:1.25rem;padding-right:1.25rem;}
+  .about-grid,.edu-card,.timeline-item{grid-template-columns:1fr;gap:1.5rem;}
+  .project-item{grid-template-columns:1fr;}.proj-meta,.exp-meta,.edu-year{text-align:left;}
+  footer{padding:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Peninah Wanjiku Mburu</span>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
+      <a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Experience</a>
+      <a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a>
+      <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-inner">
+    <span class="hero-kicker">BSc Mathematics &amp; Computer Science · JKUAT · 2026</span>
+    <h1 class="hero-name">Peninah<br/>Wanjiku<br/><em>Mburu.</em></h1>
+    <div class="hero-typed"><span id="typed-text"></span><span class="cursor"></span></div>
+    <div class="hero-ctas">
+      <a class="btn-solid" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See my work</a>
+      <a class="btn-outline" href="mailto:penymburu03@gmail.com">Get in touch</a>
+      <a class="btn-outline" href="#" id="cv-btn" onclick="handleCV(event)">↓ Download CV</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num" id="stat-repos">—</span><span class="hero-stat-label">Public repos</span></div>
+      <div class="hero-stat"><span class="hero-stat-num" id="stat-stars">—</span><span class="hero-stat-label">Total stars</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">4</span><span class="hero-stat-label">Projects built</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">2026</span><span class="hero-stat-label">Graduating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section fade-in" id="about">
+  <div class="section-inner">
+    <span class="eyebrow">About</span>
+    <h2 class="section-heading">Building with mathematics,<br/>deploying for people.</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a final-year Mathematics and Computer Science student at JKUAT, graduating in 2026. My work sits at the intersection of data analytics, machine learning, and software engineering — with a focus on building tools that are explainable, fair, and genuinely useful. I'm particularly drawn to using data to tell stories that drive real decisions.</p>
+        <p>I've interned at M-Pesa Africa working on AWS infrastructure and data modelling, done network engineering at Convergent Networks, and worked in customer success at Bobplus Africa — where firsthand experience with merchant support drove me to build automation tools as a personal project.</p>
+        <p>I'm open to internship opportunities, graduate roles, and collaborations in software engineering, AI/ML, and fintech.</p>
+      </div>
+      <div class="about-aside">
+        <div class="aside-item"><div class="aside-label">Phone</div><div class="aside-value">+254 795 141 095</div></div>
+        <div class="aside-item"><div class="aside-label">Email</div><div class="aside-value">penymburu03@gmail.com</div></div>
+        <div class="aside-item"><div class="aside-label">Location</div><div class="aside-value">Kikuyu, Nairobi</div></div>
+        <div class="aside-item"><div class="aside-label">Institution</div><div class="aside-value">JKUAT</div></div>
+        <div class="aside-item"><div class="aside-label">GitHub</div><div class="aside-value">@Wanjikumburu</div></div>
+        <div class="aside-item"><div class="aside-label">Graduating</div><div class="aside-value">2026</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section experience-section fade-in" id="experience">
+  <div class="section-inner">
+    <span class="eyebrow">Work Experience</span>
+    <h2 class="section-heading">Where I've worked.</h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in fade-in-delay-1">
+        <div>
+          <div class="exp-role">Customer Success Executive Intern</div>
+          <div class="exp-company">Bobplus Africa</div>
+          <ul class="exp-bullets">
+            <li>Served as the first point of contact for merchant support queries via Microsoft Teams and email.</li>
+            <li>Monitored merchant accounts for recurring transaction failures and flagged patterns for investigation.</li>
+            <li>Documented common merchant issues and contributed to the internal knowledge base for the CS team.</li>
+            <li>Collaborated with technical and operations teams to resolve merchant-facing platform issues.</li>
+          </ul>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">Jun 2025 — Jan 2026</div>
+          <span class="exp-type">Internship</span>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in fade-in-delay-2">
+        <div>
+          <div class="exp-role">Apprentice</div>
+          <div class="exp-company">M-Pesa Africa (Safaricom PLC)</div>
+          <ul class="exp-bullets">
+            <li>Collaborated in the creation of a lookup table on AWS.</li>
+            <li>Assisted in data modelling and SQL database optimisation.</li>
+            <li>Worked with data scientists to align analysis results with business goals.</li>
+            <li>Analysed large datasets using statistical methods.</li>
+            <li>Gained proficiency in AWS, SQL, and Gephi.</li>
+          </ul>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">Aug 2024 — Oct 2024</div>
+          <span class="exp-type">Apprenticeship</span>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in fade-in-delay-3">
+        <div>
+          <div class="exp-role">Intern</div>
+          <div class="exp-company">Convergent Networks</div>
+          <ul class="exp-bullets">
+            <li>Assisted in network troubleshooting and creating network diagrams.</li>
+            <li>Worked with the IT team to streamline internal data processes.</li>
+            <li>Troubleshot hardware and software problems.</li>
+            <li>Performed routine network maintenance tasks.</li>
+          </ul>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-date">May 2023 — Aug 2023</div>
+          <span class="exp-type">Internship</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects-section fade-in" id="projects">
+  <div class="section-inner">
+    <span class="eyebrow">Projects</span>
+    <h2 class="section-heading">Things I've built.</h2>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterProjects('all',this)">All</button>
+      <button class="filter-tab" onclick="filterProjects('automation',this)">Automation</button>
+      <button class="filter-tab" onclick="filterProjects('mobile',this)">Mobile</button>
+      <button class="filter-tab" onclick="filterProjects('ml',this)">ML</button>
+    </div>
+    <div class="projects-list">
+
+      <div class="project-item featured fade-in fade-in-delay-1" data-category="automation">
+        <div>
+          <span class="proj-type">Automation · Customer Support</span>
+          <div class="proj-title">BobBot — CS Automation System for Bobplus Africa</div>
+          <div class="proj-desc">Built from experience working as a CS agent at Bobplus Africa — every feature addresses a real pain point. BobBot handles merchant queries on Microsoft Teams, while a background transaction monitor checks every 5 minutes and escalates based on urgency: CS reminder at 12hrs, supervisor at 24hrs, instant email at 48hrs, pattern alert for 10+ failures. CS agents work from one real-time dashboard — merchant chat, alerts feed, and full transaction history, all without switching apps. Runs in demo mode without an API key.</div>
+          <div class="proj-stack">
+            <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">WebSockets</span><span class="chip">MS Bot Framework</span><span class="chip">Nodemailer</span><span class="chip">Claude API</span>
+          </div>
+          <div class="proj-links"><a class="proj-link" href="https://github.com/Wanjikumburu/bobplus-cs-system" target="_blank">GitHub →</a></div>
+        </div>
+        <div class="proj-meta"><div class="proj-year">2025</div><span class="proj-badge">Featured</span></div>
+      </div>
+
+      <div class="project-item featured fade-in fade-in-delay-2" data-category="mobile">
+        <div>
+          <span class="proj-type">Mobile · Final Year Project</span>
+          <div class="proj-title">AttendX v2 — Smart Attendance System</div>
+          <div class="proj-desc">A Flutter mobile app that automates student attendance at JKUAT using GPS geofencing and Bluetooth beacon detection. Three user roles — students, teachers, and admins — each with tailored dashboards. Anti-proxy measures include device binding and biometric authentication. Cloud Functions auto-close sessions and push at-risk alerts when attendance drops below 75%.</div>
+          <div class="proj-stack">
+            <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Firebase</span><span class="chip">GPS Geofencing</span><span class="chip">Bluetooth Beacons</span><span class="chip">Cloud Functions</span>
+          </div>
+          <div class="proj-links"><a class="proj-link" href="https://github.com/Wanjikumburu" target="_blank">GitHub →</a></div>
+        </div>
+        <div class="proj-meta"><div class="proj-year">2024</div><span class="proj-badge">Featured</span></div>
+      </div>
+
+      <div class="project-item fade-in fade-in-delay-3" data-category="ml">
+        <div>
+          <span class="proj-type">ML · FinTech · Group Project</span>
+          <div class="proj-title">Credit Scoring via Mobile Money Behaviour</div>
+          <div class="proj-desc">A 7-phase ML pipeline simulating 1.96 million synthetic M-Pesa transactions for 5,000 users. Compares a rule-based deterministic baseline against a Random Forest classifier — the AI model achieved AUC-ROC of 0.9958 and rescued 97 creditworthy borrowers from wrongful loan rejection. Includes SHAP explainability and a Streamlit dashboard with a live What-If simulator. Supervised by Dr. Phineas Roy Kiogora, JKUAT.</div>
+          <div class="proj-stack">
+            <span class="chip">Python</span><span class="chip">Random Forest</span><span class="chip">SHAP</span><span class="chip">K-Means</span><span class="chip">Streamlit</span><span class="chip">Scikit-learn</span>
+          </div>
+          <div class="proj-links"><a class="proj-link" href="https://github.com/brianngumbau/jkuat_mcs_credit_scoring_model" target="_blank">GitHub →</a></div>
+        </div>
+        <div class="proj-meta"><div class="proj-year">2024</div></div>
+      </div>
+
+      <div class="project-item fade-in" data-category="ml">
+        <div>
+          <span class="proj-type">ML · Learning Project</span>
+          <div class="proj-title">Titanic Survival Prediction</div>
+          <div class="proj-desc">A supervised ML project covering the full workflow — EDA, data cleaning, feature engineering, and model evaluation. Trained and compared Decision Tree, Naive Bayes, and Random Forest classifiers on 891 passengers. Random Forest achieved 82.1% accuracy. Key finding: sex (28%) and fare (27%) were the strongest predictors of survival.</div>
+          <div class="proj-stack">
+            <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span><span class="chip">Seaborn</span><span class="chip">Matplotlib</span>
+          </div>
+        </div>
+        <div class="proj-meta"><div class="proj-year">2024</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section skills-section fade-in" id="skills">
+  <div class="section-inner">
+    <span class="eyebrow">Skills</span>
+    <h2 class="section-heading">What I work with.</h2>
+    <div class="skills-grid">
+      <div class="skill-col fade-in fade-in-delay-1">
+        <span class="skill-col-title">Languages</span>
+        <ul class="skill-list"><li>Python</li><li>JavaScript</li><li>Dart</li><li>SQL</li><li>HTML / CSS</li><li>C</li></ul>
+      </div>
+      <div class="skill-col fade-in fade-in-delay-2">
+        <span class="skill-col-title">AI / ML</span>
+        <ul class="skill-list"><li>Scikit-learn</li><li>Random Forest</li><li>SHAP (XAI)</li><li>K-Means</li><li>Naive Bayes</li><li>Pandas / NumPy</li></ul>
+      </div>
+      <div class="skill-col fade-in fade-in-delay-3">
+        <span class="skill-col-title">Mobile &amp; Backend</span>
+        <ul class="skill-list"><li>Flutter</li><li>Firebase</li><li>Node.js</li><li>Express</li><li>WebSockets</li></ul>
+      </div>
+      <div class="skill-col fade-in">
+        <span class="skill-col-title">Tools &amp; Platforms</span>
+        <ul class="skill-list"><li>AWS</li><li>Git / GitHub</li><li>Streamlit</li><li>Power BI</li><li>Gephi</li><li>Nodemailer</li></ul>
+      </div>
+      <div class="skill-col fade-in fade-in-delay-1">
+        <span class="skill-col-title">Mathematics</span>
+        <ul class="skill-list"><li>Statistics</li><li>Time Series</li><li>PDEs</li><li>Simulation</li><li>Probability</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section edu-section fade-in" id="education">
+  <div class="section-inner">
+    <span class="eyebrow">Education</span>
+    <h2 class="section-heading">Academic background.</h2>
+    <div class="edu-list">
+      <div class="edu-card primary fade-in fade-in-delay-1">
+        <div>
+          <div class="edu-degree">BSc Mathematics &amp; Computer Science</div>
+          <div class="edu-institution">Jomo Kenyatta University of Agriculture and Technology (JKUAT)</div>
+          <div class="edu-courses">
+            <span class="course-tag">Artificial Intelligence</span>
+            <span class="course-tag">Mobile Computing</span>
+            <span class="course-tag">Cloud Computing</span>
+            <span class="course-tag">Time Series Analysis</span>
+            <span class="course-tag">Simulation &amp; Modelling</span>
+            <span class="course-tag">PDE II</span>
+            <span class="course-tag">Multimedia Systems</span>
+          </div>
+        </div>
+        <div class="edu-year">Sept 2022 — Present</div>
+      </div>
+      <div class="edu-card fade-in fade-in-delay-2">
+        <div>
+          <div class="edu-degree">Kenya Certificate of Secondary Education (KCSE)</div>
+          <div class="edu-institution">Moi Girls' School Nairobi</div>
+          <div class="edu-detail">Attained B+ · 72 points</div>
+        </div>
+        <div class="edu-year">Sept 2019 — Apr 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB STATS -->
+<section class="section github-section fade-in" id="github">
+  <div class="section-inner">
+    <span class="eyebrow">GitHub Activity</span>
+    <h2 class="section-heading">On the ground.</h2>
+    <div class="github-grid" id="github-grid">
+      <div class="github-loading">Loading GitHub stats...</div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="section references-section fade-in" id="references">
+  <div class="section-inner">
+    <span class="eyebrow">References</span>
+    <h2 class="section-heading">Available on request.</h2>
+    <div class="references-grid">
+      <div class="ref-card fade-in fade-in-delay-1">
+        <div class="ref-name">George Gakungu</div>
+        <div class="ref-title">Director</div>
+        <div class="ref-org">Convergent Networks</div>
+        <div class="ref-contacts">
+          <span class="ref-contact">📞 0721 360 163</span>
+          <span class="ref-contact">✉ ggakungu@gmail.com</span>
+        </div>
+      </div>
+      <div class="ref-card fade-in fade-in-delay-2">
+        <div class="ref-name">Asumpta Muia</div>
+        <div class="ref-title">Senior Executive Assistant</div>
+        <div class="ref-org">M-Pesa Africa · Safaricom PLC</div>
+        <div class="ref-contacts">
+          <span class="ref-contact">📞 0724 044 244</span>
+          <span class="ref-contact">✉ summiemwanza@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section fade-in" id="contact">
+  <div class="section-inner">
+    <span class="eyebrow">Contact</span>
+    <h2 class="section-heading">Open to opportunities.</h2>
+    <p class="contact-sub">Looking for internships, graduate roles, and project collaborations in software engineering, AI/ML, and fintech. Reach out — I'd love to connect.</p>
+    <div class="contact-cards">
+      <a class="contact-card" href="https://github.com/Wanjikumburu" target="_blank"><div class="contact-dot"></div>GitHub — @Wanjikumburu</a>
+      <a class="contact-card" href="mailto:penymburu03@gmail.com"><div class="contact-dot"></div>penymburu03@gmail.com</a>
+      <a class="contact-card" href="tel:+254711642538"><div class="contact-dot"></div>+254 795 141 095</a>
+      <a class="contact-card" href="#" onclick="return false;"><div class="contact-dot"></div>LinkedIn — add yours</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Peninah Wanjiku Mburu</span>
+  <span>BSc Mathematics &amp; CS · JKUAT · 2026</span>
+</footer>
+
+<script>
+// THEME
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('themeBtn').textContent=isDark?'🌙 Dark':'☀️ Light';
+}
+
+// TYPED
+const phrases=[
+  "I build automation systems that work in the real world.",
+  "I train ML models on African financial data.",
+  "I develop mobile apps with Flutter + Firebase.",
+  "I care about AI that is explainable and fair.",
+  "I have interned at M-Pesa Africa and Convergent Networks."
+];
+let pi=0,ci=0,deleting=false;
+const el=document.getElementById('typed-text');
+function type(){
+  const phrase=phrases[pi];
+  if(!deleting){el.textContent=phrase.slice(0,ci+1);ci++;if(ci===phrase.length){deleting=true;setTimeout(type,2200);return;}}
+  else{el.textContent=phrase.slice(0,ci-1);ci--;if(ci===0){deleting=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(type,deleting?40:52);
+}
+setTimeout(type,800);
+
+// SCROLL
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// FILTER
+function filterProjects(cat,btn){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-item').forEach(item=>{
+    if(cat==='all'||item.dataset.category===cat){item.classList.remove('hidden');}
+    else{item.classList.add('hidden');}
+  });
+}
+
+// GITHUB
+async function loadGitHubStats(){
+  try{
+    const res=await fetch('https://api.github.com/users/Wanjikumburu');
+    const data=await res.json();
+    const reposRes=await fetch('https://api.github.com/users/Wanjikumburu/repos?per_page=100');
+    const repos=await reposRes.json();
+    const stars=Array.isArray(repos)?repos.reduce((s,r)=>s+(r.stargazers_count||0),0):0;
+    const langs=new Set();
+    if(Array.isArray(repos))repos.forEach(r=>{if(r.language)langs.add(r.language);});
+    document.getElementById('github-grid').innerHTML=`
+      <div class="github-stat-card"><div class="github-stat-number">${data.public_repos||0}</div><div class="github-stat-label">Public repos</div></div>
+      <div class="github-stat-card"><div class="github-stat-number">${stars}</div><div class="github-stat-label">Total stars</div></div>
+      <div class="github-stat-card"><div class="github-stat-number">${data.followers||0}</div><div class="github-stat-label">Followers</div></div>
+      <div class="github-stat-card"><div class="github-stat-number">${langs.size}</div><div class="github-stat-label">Languages used</div></div>
+    `;
+    document.getElementById('stat-repos').textContent=data.public_repos||'—';
+    document.getElementById('stat-stars').textContent=stars;
+  }catch(e){
+    document.getElementById('github-grid').innerHTML='<div class="github-loading">Could not load GitHub stats.</div>';
+  }
+}
+loadGitHubStats();
+
+// CV
+function handleCV(e){
+  e.preventDefault();
+  alert('Place your CV PDF in the same folder as index.html, rename it cv.pdf, then update this button to: href="./cv.pdf" download');
+}
+</script>
+</body>
+</html>
